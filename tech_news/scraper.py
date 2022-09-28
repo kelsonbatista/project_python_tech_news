@@ -1,5 +1,6 @@
 import requests
 from time import sleep
+from parsel import Selector
 
 
 # Requisito 1
@@ -19,7 +20,12 @@ def fetch(url):
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(text=html_content)
+    titles = selector.css("h2 a::attr(href)").getall()
+    if not titles:
+        print(titles)
+        return []
+    return titles
 
 
 # Requisito 3
@@ -35,3 +41,7 @@ def scrape_noticia(html_content):
 # Requisito 5
 def get_tech_news(amount):
     """Seu código deve vir aqui"""
+
+
+html_content = fetch("https://blog.betrybe.com/")
+scrape_novidades(html_content)
