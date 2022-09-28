@@ -1,6 +1,7 @@
 import requests
 from time import sleep
 from parsel import Selector
+# import tech_news.database
 
 
 # Requisito 1
@@ -37,13 +38,32 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_noticia(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(text=html_content)
+    url = selector.css("link[rel='canonical']::attr(href)").get()
+    title = selector.css(".entry-title::text").get().strip()
+    timestamp = selector.css(".meta-date::text").get()
+    writer = selector.css(".author a::text").get()
+    comments_count = len(selector.css(".comment-list li").getall())
+    summary_original = selector.css(
+        "div.entry-content > p:first-of-type *::text").getall()
+    summary = "".join(summary_original).strip()
+    tags = selector.css(".post-tags ul li a::text").getall()
+    category = selector.css(".category-style span:nth_child(2)::text").get()
+
+    news = {
+        "url": url,
+        "title": title,
+        "timestamp": timestamp,
+        "writer": writer,
+        "comments_count": comments_count,
+        "summary": summary,
+        "tags": tags,
+        "category": category
+    }
+    # print(news)
+    return news
 
 
 # Requisito 5
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
-
-
-html_content = fetch("https://blog.betrybe.com/")
-scrape_next_page_link(html_content)
+    pass
