@@ -1,7 +1,7 @@
 import requests
 from time import sleep
 from parsel import Selector
-# import tech_news.database
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -66,4 +66,9 @@ def scrape_noticia(html_content):
 
 # Requisito 5
 def get_tech_news(amount):
-    pass
+    content = fetch("https://blog.betrybe.com/")
+    all_news = []
+    while scrape_next_page_link(content):
+        all_news.extend(scrape_novidades(content))
+        scrape_next_page_link(content)
+    create_news(all_news)
