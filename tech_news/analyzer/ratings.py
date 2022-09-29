@@ -1,6 +1,14 @@
+from tech_news.database import find_news
+
+
 # Requisito 10
 def top_5_news():
-    """Seu código deve vir aqui"""
+    filter = sorted(
+        find_news(),
+        key=lambda x: (-x["comments_count"], x["title"])
+    )[:5]
+    # print(json.dumps(filter, indent=4))
+    return [(item["title"], item["url"]) for item in filter]
 
 
 # Requisito 11
