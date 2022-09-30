@@ -1,4 +1,5 @@
 from tech_news.database import find_news
+# import json
 
 
 # Requisito 10
@@ -13,4 +14,9 @@ def top_5_news():
 
 # Requisito 11
 def top_5_categories():
-    """Seu código deve vir aqui"""
+    categories = [item["category"] for item in find_news()]
+    categories = sorted(list(
+        {(cat, categories.count(cat)) for cat in categories}),
+        key=lambda x: (-x[1], x[0]))
+    categories_top = [cat[0] for cat in categories]
+    return categories_top[:5]
