@@ -22,38 +22,41 @@ def analyzer_menu():
     7 - Sair.
     """
 
-    while (True):
-        user_input = input(MENU_OPTIONS)
+    user_input = input(MENU_OPTIONS)
 
+    while (True):
         try:
-            if user_input == 0:
+            if user_input == "0":
                 response = input("Digite quantas notícias serão buscadas:")
                 get_tech_news(int(response))
                 return
-            elif user_input == 1:
+            elif user_input == "1":
                 response = input("Digite o título:")
                 print(search_by_title(response))
                 return
-            elif user_input == 2:
+            elif user_input == "2":
                 response = input("Digite a data no formato aaaa-mm-dd:")
                 print(search_by_date(response))
                 return
-            elif user_input == 3:
+            elif user_input == "3":
                 response = input("Digite a tag:")
                 print(search_by_tag(response))
                 return
-            elif user_input == 4:
+            elif user_input == "4":
                 response = input("Digite a categoria:")
                 print(search_by_category(response))
                 return
-            elif user_input == 5:
+            elif user_input == "5":
                 print(top_5_news())
                 return
-            elif user_input == 6:
+            elif user_input == "6":
                 print(top_5_categories())
                 return
-            elif user_input == 7:
+            elif user_input == "7":
                 print("Encerrando script")
                 return False
         except ValueError:
             print("Opção inválida")
+
+
+analyzer_menu()
