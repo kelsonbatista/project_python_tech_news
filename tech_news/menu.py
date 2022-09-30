@@ -24,43 +24,42 @@ def analyzer_menu():
 
     user_input = input(MENU_OPTIONS)
 
-    while (True):
-        try:
-            if user_input == "0":
-                response = input("Digite quantas notícias serão buscadas:")
-                get_tech_news(int(response))
-                return
+    try:
+        if user_input == "0":
+            response = input("Digite quantas notícias serão buscadas:")
+            get_tech_news(int(response))
+            return
 
-            if user_input == "1":
-                response = input("Digite o título:")
-                print(search_by_title(response))
-                return
+        if user_input == "1":
+            response = input("Digite o título:")
+            print(search_by_title(response))
+            return
 
-            if user_input == "2":
-                response = input("Digite a data no formato aaaa-mm-dd:")
-                print(search_by_date(response))
-                return
+        if user_input == "2":
+            response = input("Digite a data no formato aaaa-mm-dd:")
+            print(search_by_date(response))
+            return
 
-            if user_input == "3":
-                response = input("Digite a tag:")
-                print(search_by_tag(response))
-                return
-            if user_input == "4":
-                response = input("Digite a categoria:")
-                print(search_by_category(response))
-                return
+        if user_input == "3":
+            response = input("Digite a tag:")
+            print(search_by_tag(response))
+            return
+        if user_input == "4":
+            response = input("Digite a categoria:")
+            print(search_by_category(response))
+            return
 
-            if user_input == "5":
-                print(top_5_news())
-                return
+        if user_input == "5":
+            print(top_5_news())
+            return
 
-            if user_input == "6":
-                print(top_5_categories())
-                return
+        if user_input == "6":
+            print(top_5_categories())
+            return
 
-            if user_input == "7":
-                print("Encerrando script")
-                return False
+        if user_input == "7":
+            print("Encerrando script")
+            return False
 
-        except ValueError:
-            print("Opção inválida")
+    except ValueError:
+        print("Opção inválida")
