@@ -22,44 +22,60 @@ def analyzer_menu():
     7 - Sair.
     """
 
-    user_input = input(MENU_OPTIONS)
+    option = input(MENU_OPTIONS)
 
-    try:
-        if user_input == "0":
-            response = input("Digite quantas notícias serão buscadas:")
-            get_tech_news(int(response))
-            return
-
-        if user_input == "1":
-            response = input("Digite o título:")
-            print(search_by_title(response))
-            return
-
-        if user_input == "2":
-            response = input("Digite a data no formato aaaa-mm-dd:")
-            print(search_by_date(response))
-            return
-
-        if user_input == "3":
-            response = input("Digite a tag:")
-            print(search_by_tag(response))
-            return
-        if user_input == "4":
-            response = input("Digite a categoria:")
-            print(search_by_category(response))
-            return
-
-        if user_input == "5":
-            print(top_5_news())
-            return
-
-        if user_input == "6":
-            print(top_5_categories())
-            return
-
-        if user_input == "7":
-            print("Encerrando script")
-            return False
-
-    except ValueError:
+    if int(option) == 0:
+        populate_news()
+    if 1 <= int(option) <= 4:
+        return menu_scrape(option)
+    if 5 <= int(option) <= 6:
+        return menu_search(option)
+    if option == 7:
+        return menu_exit()
+    else:
         print("Opção inválida")
+
+
+def populate_news():
+    response = input("Digite quantas notícias serão buscadas:")
+    get_tech_news(int(response))
+    return
+
+
+def menu_scrape(option):
+    if option == "1":
+        response = input("Digite o título:")
+        print(search_by_title(response))
+        return
+
+    if option == "2":
+        response = input("Digite a data no formato aaaa-mm-dd:")
+        print(search_by_date(response))
+        return
+
+    if option == "3":
+        response = input("Digite a tag:")
+        print(search_by_tag(response))
+        return
+    if option == "4":
+        response = input("Digite a categoria:")
+        print(search_by_category(response))
+        return
+
+
+def menu_search(option):
+    if option == "5":
+        print(top_5_news())
+        return
+
+    if option == "6":
+        print(top_5_categories())
+        return
+
+
+def menu_exit():
+    print("Encerrando script")
+    return False
+
+
+analyzer_menu()
