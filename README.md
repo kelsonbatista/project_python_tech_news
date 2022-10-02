@@ -20,14 +20,9 @@ The main goal of this project is to consult on technology news. The news is obta
   - Docker / *Docker*
 
 ---
-# Layout
-
-<img src="intro.gif" alt="Tech News" />
-
----
 # Deployment / *Implantação*
 
 Commands:
 
 - docker-compose up -d
-- Access http://localhost:5000
+- Access tech_news/analyser_menu()
